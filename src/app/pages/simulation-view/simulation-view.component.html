@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <h2 class="text-center">Monty Hall Simulation</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="numberOfAttempts">Number of Simulations:</label>
+        <input type="number" id="numberOfAttempts" class="form-control" [(ngModel)]="numberOfAttempts" />
+      </div>
+      <div class="form-group form-check">
+        <input type="checkbox" id="changeDoor" class="form-check-input" [(ngModel)]="isDoorChanged" />
+        <label class="form-check-label" for="changeDoor">Change Door</label>
+      </div>
+      <button class="btn btn-primary"
+      routerLink=""
+      (click)="tryOutGames()">Try Out</button>
+      <button
+      routerLink="chart"
+      class="m-1 btn btn-light btn-outline-primary"
+      Button>View Log Chart
+      </button>
+    </div>
+  </div>
+ 
+  <div *ngIf="simulationResultEntity.length > 0" class="mt-4">
+    <h3>Simulation Results</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Round</th>
+          <th>Selected Door</th>
+          <th>Revealed Door</th>
+          <th>Final Choice</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let result of simulationResultEntity; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ result.selectedDoor }}</td>
+          <td>{{ result.revealedDoor }}</td>
+          <td>{{ result.finalChoice }}</td>
+          <td>{{ result.isWin ? 'Win' : 'Lose' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div>
+      <h4>Win Percentage: {{ calculateWinPercentage() | number:'1.2-2' }}%</h4>
+    </div>
+
+     <!-- Chart component
+     <app-chart [chartData]="simulationResultEntity"></app-chart>
+  </div>
+</div> -->
